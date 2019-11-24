@@ -1,0 +1,2 @@
+# seismograph
+simple logger
