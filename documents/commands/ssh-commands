@@ -1,0 +1,9 @@
+
+
+sudo ssh root@192.168.1.59
+
+sudo sshfs root@192.168.1.59:/ /mnt/imx6ull-rootfs -o allow_other
+ssh-keygen -f "/root/.ssh/known_hosts" -R "192.168.1.59"
+
+
+

@@ -1,0 +1,47 @@
+https://developer.toradex.com/knowledge-base/board-support-package/openembedded-(core)
+https://developer.toradex.com/knowledge-base/how-to-set-up-qt-creator-to-cross-compile-for-embedded-linux
+
+----- OpenEmbedded/Yocto ------
+
+mkdir ~/bin
+export PATH=~/bin:$PATH
+curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+
+sudo apt install git
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+
+mkdir oe-core
+cd oe-core
+
+repo init -u http://git.toradex.com/toradex-bsp-platform.git -b LinuxImage3.0 -m default.xml
+repo sync
+. export
+
+----> build/conf/local.conf
+MACHINE ?= "colibri-imx6ull"
+PACKAGE_CLASSES ?= "package_ipk"
+EXTRA_IMAGE_FEATURES = "debug-tweaks package-management"
+IMAGE_INSTALL_append = "opkg rsync"
+
+----> oe-core/layers/meta-qt5/recipes-qt/packagegroups/packagegroup-qt5-toolchain-target.bbappend
+RDEPENDS_${PN}_remove = "qtwebkit qtwebkit-dev qtwebkit-mkspecs qtwebkit-qmlplugins qt3d"
+
+bitbake -k qt5-x11-image
+bitbake qt5-x11-image -c populate_sdk
+
+cd ../deploy/sdk/
+./angstrom-glibc-x86_64-armv7at2hf-neon-v2016.12-toolchain.sh
+
+------------------------------
+The output can be found here:
+    For images, u-boot, uImage, rootfs, deployable tarball: build/deploy/images/${MACHINE}/
+    For SDKs: build/deploy/sdk/
+    For ipk packages: build/deploy/ipk//*.ipk
+
+
+
+
+
+

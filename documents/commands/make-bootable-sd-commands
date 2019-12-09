@@ -1,0 +1,29 @@
+https://developer.toradex.com/knowledge-base/boot-from-sd-usb-sata
+
+----- Bootable SD ------
+
+sudo parted -s /dev/sd? mklabel gpt mkpart primary fat32 1MiB 100MiB mkpart ext4 100MiB 2000MiB name 1 boot name 2 rootfs
+sudo mkfs.fat -n boot /dev/sd?1 && sudo mkfs.ext4 -L rootfs /dev/sd?2
+sudo lsblk /dev/sd? -o NAME,FSTYPE,LABEL,PARTLABEL (to verify)
+
+sudo mount -L boot /mnt/boot
+sudo mount -L rootfs /mnt/rootfs
+
+sudo tar xf Colibri-iMX6ULL_Console-Image.bootfs.tar.xz --no-same-owner -C /mnt/boot
+sudo tar xf Colibri-iMX6ULL_Console-Image.rootfs.tar.xz -C /mnt/rootfs
+
+sudo umount /mnt/{boot,rootfs}
+
+
+
+
+
+Insert SD card and turn on the module.
+Immediately pres any key and switch to command prompt mode (use minicom).
+In prompt mode, use "run sdboot" command for booting from SD card.
+Now, kernel is starting...
+
+
+
+
+

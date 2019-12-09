@@ -1,0 +1,1 @@
+sudo ln -sn /home/amiryeg/Documents/angstrom-sdk/sysroots/Colibri-iMX6ULL_Console-Image-rootfs /mnt/imx6ull-rootfs

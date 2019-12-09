@@ -1,0 +1,9 @@
+
+opkg update
+opkg update list
+opkg install dhcp-server
+opkg install packagegroup-sdk-target
+opkg install packagegroup-core-buildessential
+
+
+

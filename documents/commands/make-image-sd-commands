@@ -1,0 +1,15 @@
+https://developer.toradex.com/knowledge-base/flashing-linux-on-imx6-modules#Colibri_iMX6
+
+----- Image SD ------
+
+1- Copy as root permission Colibri-iMX6ULL_Console-Image-Tezi_2.8b6.184 to SD card
+    this folder includes .dtb files, zImage, compressed rootfs and, etc.
+2- Make carrier baord to recovery-mode (see recovery-mode tutorial)
+3- Insert SD card into SD slot
+4- Select SD in the menu
+5- Install embedded linux and flashing it to iMX6 module
+6- After flashing module, remove SD card and restart it
+7- Kernel is starting...
+
+
+
